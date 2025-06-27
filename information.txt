@@ -1,0 +1,36 @@
+# Personal Information
+Name: Abinesh Srinivasan
+Title: Aspiring Data Scientist
+Status: Available for Work
+
+# Introduction
+Headline: Hey there! I'm Abinesh…
+Description: I'm a passionate Data Science student dedicated to transforming complex data into actionable insights.
+
+# Navigation
+- Home
+- About
+- Projects
+- Stack
+- Contact
+
+# Recent Projects
+1. Thelist Framer Website Autonomous Systems
+   Title: AERO | Automated Execution and Response Orchestrator
+   
+2. AI Agent
+   Title: NATSU AI | Companionship That Cares
+   
+3. AI Embedded Systems
+   Title: AI Powered Object Detection And Survillence rover
+
+# Technical Stack
+1. Python (General Purpose)
+2. R Language (Data Analysis)
+3. Java (Object-Oriented Programming)
+4. JavaScript (Web Development)
+5. SQL (Relational Databases)
+6. React (Dynamic Development)
+
+# Copyright
+© Copyright 2025. All rights Reserved. 
