@@ -11,14 +11,31 @@
 <body>
     <div class="cursor-dot" data-cursor-dot></div>
     <div class="cursor-outline" data-cursor-outline></div>
-    <div id="tsparticles"></div>
+
+    <!-- Mobile Navigation -->
+    <header class="mobile-header">
+        <a href="index.html" class="mobile-brand">Abinesh</a>
+        <button class="hamburger-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+    </header>
+    <nav class="mobile-nav">
+        <ul>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="experience.html">Experience</a></li>
+            <li><a href="tech-stack.html">Tech Stack</a></li>
+            <li><a href="assets/Abinesh Resume.pdf" target="_blank">CV</a></li>
+            <li><a href="#" id="mobile-contact-trigger">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Desktop Header -->
     <header class="main-header">
         <nav class="main-nav">
             <a href="index.html" class="nav-brand">Abinesh</a>
-            <button class="nav-toggle" aria-label="toggle navigation">
-                <span class="hamburger"></span>
-            </button>
-            <ul class="nav-links">
+            <ul>
                 <li><a href="projects.html">Projects</a></li>
                 <li><a href="experience.html">Experience</a></li>
                 <li><a href="tech-stack.html">Tech Stack</a></li>
@@ -27,6 +44,7 @@
         </nav>
     </header>
 
+    <div id="tsparticles"></div>
     <div class="page-container">
         <aside class="sidebar">
             <div class="sidebar-content">
@@ -35,15 +53,12 @@
                 <p class="subtitle">Masters in Data Science</p>
 
                 <ul class="contact-info">
-                    <li><a href="#"><i class="fa-solid fa-location-dot"></i> California</a></li>
-                    <li><a href="mailto:email@example.com"><i class="fa-solid fa-envelope"></i> Email</a></li>
-                    
-                    <li><a href="#"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></li>
-                    <li><a href="#"><i class="fa-brands fa-github"></i> Github</a></li>
+                    <li><a href="https://www.google.com/maps/place/California" target="_blank"><i class="fa-solid fa-location-dot"></i> California</a></li>
+                    <li><a href="mailto:abisrini16@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/abinesh-srini/" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></li>
+                    <li><a href="https://github.com/Abinesh1608" target="_blank"><i class="fa-brands fa-github"></i> Github</a></li>
                     <li><a href="assets/Abinesh Resume.pdf" target="_blank"><i class="fa-solid fa-file-pdf"></i> Resume</a></li>
                 </ul>
-
-                <div class="sidebar-background"></div>
             </div>
         </aside>
 
@@ -51,13 +66,10 @@
             <article>
                 <h1>Hello!</h1>
                 <p>
-                    I'm a graduate student in Data Science and Analytics at California State University, Chico. Currently, I'm interning as a Data Science Engineer at LSCE. Before moving to the U.S, I completed a Master's in Computer Science at VIT, where I worked as an AI researcher in the area of computer vision and autonomous rovers. I also interned as a Data Science Intern at Intellect Design Arena.
+                    I'm a graduate student in Data Science and Analytics at <a href="https://www.csuchico.edu/" target="_blank" class="red-link">California State University, Chico</a>. Currently, I'm interning as a Data Science Engineer at <a href="https://lsce.com/" target="_blank" class="red-link">LSCE</a>. Before moving to the U.S, I completed a Master's in Computer Science at <a href="https://vit.ac.in/" target="_blank" class="red-link">VIT</a>, where I worked as an AI researcher in the area of computer vision and autonomous rovers. I also interned as a Data Science Intern at <a href="https://www.intellectdesign.com/about-us/" target="_blank" class="red-link">Intellect Design Arena</a>.
                 </p>
                 <p>
                     Since relocating, I've taken on roles as a Research Assistant and Student Ambassador, deepening both my technical and academic experience. My core interests lie in Large Language Models, Transformers, Deep Learning, Multi-modal Context Processing (MCP), AI Agents, and Retrieval-Augmented Generation (RAG) systems. Beyond AI, I also enjoy building full-stack applications across mobile, web, and desktop platforms.
-                </p>
-                <p>
-                    When I'm not exploring the frontiers of AI, you'll find me experimenting with tech stacks or engaging with the community through research and collaborative projects.
                 </p>
             </article>
         </main>
@@ -67,5 +79,22 @@
     <script src="js/particles.js"></script>
     <script src="js/cursor.js"></script>
     <script src="js/script.js"></script>
+
+    <!-- Mobile Contact Overlay -->
+    <div class="mobile-contact-overlay">
+        <div class="mobile-contact-content">
+            <button class="close-contact-btn">&times;</button>
+            <img src="assets/Images/Profile.jpeg" alt="Abinesh" class="profile-picture">
+            <h2>Abinesh</h2>
+            <p class="subtitle">Masters in Data Science</p>
+            <ul class="contact-info">
+                <li><a href="https://www.google.com/maps/place/California" target="_blank"><i class="fa-solid fa-location-dot"></i> California</a></li>
+                <li><a href="mailto:abisrini16@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a></li>
+                <li><a href="https://www.linkedin.com/in/abinesh-srini/" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></li>
+                <li><a href="https://github.com/Abinesh1608" target="_blank"><i class="fa-brands fa-github"></i> Github</a></li>
+                <li><a href="assets/Abinesh Resume.pdf" target="_blank"><i class="fa-solid fa-file-pdf"></i> Resume</a></li>
+            </ul>
+        </div>
+    </div>
 </body>
 </html> 

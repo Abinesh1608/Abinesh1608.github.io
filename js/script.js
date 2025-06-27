@@ -23,11 +23,40 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+});
 
-    const navToggle = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger-menu');
+    const body = document.querySelector('body');
 
-    navToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('nav-links-visible');
-    });
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            body.classList.toggle('mobile-nav-active');
+        });
+    }
+
+    const contactTrigger = document.getElementById('mobile-contact-trigger');
+    const contactOverlay = document.querySelector('.mobile-contact-overlay');
+    const closeContactBtn = document.querySelector('.close-contact-btn');
+
+    if (contactTrigger && contactOverlay && body && closeContactBtn) {
+        contactTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            // First, close the main mobile nav
+            body.classList.remove('mobile-nav-active');
+            // Then, show the contact overlay
+            contactOverlay.classList.add('active');
+        });
+
+        closeContactBtn.addEventListener('click', () => {
+            contactOverlay.classList.remove('active');
+        });
+
+        // Optional: close by clicking background
+        contactOverlay.addEventListener('click', (e) => {
+            if (e.target === contactOverlay) {
+                contactOverlay.classList.remove('active');
+            }
+        });
+    }
 }); 

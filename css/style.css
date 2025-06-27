@@ -75,138 +75,62 @@ a {
 
 /* Header */
 .main-header {
-    background: #111;
+    background: var(--background-color);
+    border-bottom: 1px solid var(--border-color);
     padding: 0 2rem;
-    border-bottom: 1px solid #333;
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 1000;
+    width: 100%;
+    z-index: 100;
+    height: 60px; /* 60px * 1.0 */
 }
 
 .main-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
-    height: 60px;
+    height: 100%;
 }
 
-.nav-brand {
-    font-size: 1.5rem;
+.main-nav .nav-brand {
     font-weight: bold;
-    color: #eee;
+    font-size: 1.2rem;
+    color: var(--heading-color);
     text-decoration: none;
 }
 
-.main-nav ul,
-.main-nav .nav-links {
-    list-style: none;
+.main-nav ul {
     display: flex;
-    margin: 0;
-    padding: 0;
-    gap: 1.5rem;
+    list-style: none;
 }
 
-.main-nav a {
-    color: #ccc;
+.main-nav ul li a {
+    padding: 1rem;
+    color: var(--text-color);
     text-decoration: none;
-    font-size: 1rem;
-    padding: 0.5rem 0;
-    position: relative;
-    transition: color 0.3s;
 }
-
-.main-nav a:hover, .main-nav a.active {
-    color: #fff;
-}
-
-.main-nav a.active::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: #007bff;
-}
-
-/* Hamburger Menu Styles */
-.nav-toggle {
-    display: none; /* Hidden by default */
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 1001;
-}
-
-.hamburger {
-    display: block;
-    position: relative;
-    width: 25px;
-    height: 2px;
-    background: #fff;
-    transition: all 0.2s ease-in-out;
-}
-
-.hamburger::before,
-.hamburger::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: #fff;
-    transition: all 0.2s ease-in-out;
-}
-
-.hamburger::before {
-    top: -8px;
-}
-
-.hamburger::after {
-    bottom: -8px;
+.main-nav ul li a:hover {
+    color: var(--link-color);
 }
 
 /* Page Layout */
 .page-container {
     display: flex;
-    max-width: 1400px;
-    margin: 2rem auto;
-    gap: 2rem;
-    padding: 0 2rem;
-    position: relative;
-    z-index: 2;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
 
 /* Sidebar */
 .sidebar {
-    top: 2rem;
     width: 280px;
     flex-shrink: 0;
-}
-
-.sidebar-content {
-    background: rgba(40, 40, 40, 0.8);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 1.5rem;
-    position: relative;
-    z-index: 2;
-}
-
-.sidebar-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(30, 30, 30, 0.7);
-    border-radius: 15px;
-    z-index: 1;
-    display: none; /* Only used for mobile layout */
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .profile-picture {
@@ -266,11 +190,6 @@ a {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 40px;
     border-radius: 10px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 2rem;
-    min-width: 0; /* Prevents flexbox overflow */
 }
 
 .main-content h1 {
@@ -665,34 +584,96 @@ a {
 }
 
 /* Responsive Timeline Design */
-/* Responsive Design */
 @media screen and (max-width: 768px) {
     .timeline-container::before {
-        left: 30px;
-        transform: none;
+        left: 20px;
+        transform: translateX(-50%);
     }
-    
+
     .timeline-row,
     .timeline-row.reverse {
-        flex-direction: column;
-        align-items: flex-start;
-        padding-left: 60px;
+        /* OVERRIDE: Remove flex behavior completely on mobile */
+        display: block;
+        padding-left: 45px;
         margin-bottom: 2rem;
     }
-    
-    .experience-card,
-    .achievements-card {
+
+    /* Force the order and display for all rows, ignoring .reverse */
+    .timeline-row .experience-card,
+    .timeline-row.reverse .experience-card {
+        display: block; /* Ensure it's a block element */
         width: 100%;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem; /* Space between title and details */
+        padding: 0;
     }
-    
+
+    .timeline-row .achievements-card,
+    .timeline-row.reverse .achievements-card {
+        display: block; /* Ensure it's a block element */
+        width: 100%;
+        padding: 1.5rem;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        margin: 0;
+    }
+
     .timeline-dot {
         left: 20px;
-        transform: none;
-        width: 16px;
-        height: 16px;
-        border-width: 3px;
+        transform: translateX(-50%);
+        top: 4px; 
     }
+}
+
+/* Mobile Contact Overlay */
+.mobile-contact-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 104; /* Above the mobile nav */
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s;
+}
+
+.mobile-contact-overlay.active {
+    display: flex;
+}
+
+.mobile-contact-content {
+    background-color: var(--background-color);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+}
+
+.mobile-contact-content .profile-picture {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mobile-contact-content .contact-info a {
+    color: var(--heading-color);
+}
+.mobile-contact-content .contact-info i {
+    color: var(--link-color);
+}
+
+.close-contact-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #999;
+    cursor: pointer;
 }
 
 /* Footer */
@@ -1164,17 +1145,15 @@ a {
 }
 
 /* --- Tech Stack Page Specific Styles --- */
-
 .skills-showcase {
     margin-bottom: 50px;
 }
-
 .tabs-container {
     display: flex;
     margin-bottom: 20px;
     border-bottom: 2px solid #eee;
+    flex-wrap: wrap; 
 }
-
 .tab {
     padding: 15px 25px;
     cursor: pointer;
@@ -1183,35 +1162,28 @@ a {
     border-bottom: 3px solid transparent;
     transition: all 0.3s ease;
 }
-
 .tab:hover {
     color: #000;
 }
-
 .tab.active {
     color: #000;
     border-bottom-color: #333;
 }
-
 .tab i {
     margin-right: 8px;
 }
-
 .tab-content {
     display: none;
     animation: fadeIn 0.5s;
 }
-
 .tab-content.active {
     display: block;
 }
-
 .skill-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 15px;
 }
-
 .skill-item-pro {
     background-color: #f7f7f7;
     padding: 20px;
@@ -1220,36 +1192,30 @@ a {
     font-weight: 500;
     transition: transform 0.2s, box-shadow 0.2s;
 }
-
 .skill-item-pro:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
-
 .proficiencies-section {
     margin-bottom: 50px;
 }
-
 .prof-categories {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
 }
-
 .prof-category h3 {
     margin-bottom: 15px;
     font-size: 1.2rem;
     border-bottom: 2px solid #eee;
     padding-bottom: 10px;
 }
-
-.tech-tags {
+.prof-category .tech-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
-
-.tech-badge {
+.prof-category .tech-badge {
     background-color: #e9ecef;
     color: #495057;
     padding: 5px 12px;
@@ -1257,20 +1223,242 @@ a {
     font-size: 0.9rem;
     font-weight: 500;
 }
-
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   Experience Page Layout Control
+   ========================================================================== */
+
+/* By default, show desktop timeline and hide mobile list */
+.mobile-experience {
+    display: none;
+}
+.desktop-timeline {
+    display: block;
+}
+
+/* New mobile-specific styles for the experience list */
+.mobile-exp-item {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.mobile-exp-item h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--heading-color);
+    margin-bottom: 0.25rem;
+}
+.mobile-exp-item .company {
+    color: var(--link-color);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+.mobile-exp-item .period {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+.mobile-exp-item .details h4 {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+.mobile-exp-item .details ul {
+    list-style: none;
+    padding-left: 0;
+}
+.mobile-exp-item .details li {
+    padding-left: 1.2rem;
+    position: relative;
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+}
+.mobile-exp-item .details li::before {
+    content: '▸';
+    color: var(--link-color);
+    position: absolute;
+    left: 0;
+}
+
+/* Responsive Timeline Design */
+@media screen and (max-width: 768px) {
+    /* Hide the desktop timeline and show the mobile-specific list */
+    .desktop-timeline {
+        display: none;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    .mobile-experience {
+        display: block;
+    }
+
+    .timeline-container::before {
+        left: 20px;
+        transform: translateX(-50%);
+    }
+
+    .timeline-row,
+    .timeline-row.reverse {
+        /* OVERRIDE: Remove flex behavior completely on mobile */
+        display: block;
+        padding-left: 45px;
+        margin-bottom: 2rem;
+    }
+
+    /* Force the order and display for all rows, ignoring .reverse */
+    .timeline-row .experience-card,
+    .timeline-row.reverse .experience-card {
+        display: block; /* Ensure it's a block element */
+        width: 100%;
+        margin-bottom: 1.5rem; /* Space between title and details */
+        padding: 0;
+    }
+
+    .timeline-row .achievements-card,
+    .timeline-row.reverse .achievements-card {
+        display: block; /* Ensure it's a block element */
+        width: 100%;
+        padding: 1.5rem;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        margin: 0;
+    }
+
+    .timeline-dot {
+        left: 20px;
+        transform: translateX(-50%);
+        top: 4px; 
     }
 }
 
-/* --- Responsive Styles --- */
-@media (max-width: 800px) {
+/* ==========================================================================
+   Mobile Responsive Design
+   ========================================================================== */
+
+.mobile-header, .mobile-nav, .hamburger-menu {
+    display: none; /* Hidden on desktop */
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 60px; /* Space for fixed mobile header */
+        cursor: default; /* Use default cursor on mobile */
+    }
+
+    .cursor-dot, .cursor-outline {
+        display: none; /* Hide custom cursor on mobile */
+    }
+
+    /* Hide Desktop Header and Sidebar */
+    .main-header, .sidebar {
+        display: none;
+    }
+
+    /* Show Mobile Header */
+    .mobile-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        height: 60px;
+        background-color: var(--background-color);
+        border-bottom: 1px solid var(--border-color);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 101;
+    }
+
+    .mobile-brand {
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: var(--heading-color);
+    }
+
+    /* Hamburger Menu Icon */
+    .hamburger-menu {
+        display: block;
+        cursor: pointer;
+        z-index: 103;
+        background: none;
+        border: none;
+    }
+
+    .hamburger-menu .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        background-color: var(--heading-color);
+        transition: all 0.3s ease-in-out;
+    }
+    
+    /* Mobile Navigation Overlay */
+    .mobile-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.95);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 102;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .mobile-nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+    }
+
+    .mobile-nav ul li {
+        margin-bottom: 2rem;
+    }
+
+    .mobile-nav ul li a {
+        color: #fff;
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-decoration: none;
+    }
+    
+    .mobile-nav ul li a.active {
+        color: var(--link-color);
+    }
+    
+    /* State when mobile nav is active */
+    body.mobile-nav-active .mobile-nav {
+        transform: translateX(0);
+    }
+
+    body.mobile-nav-active .hamburger-menu .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+        background-color: #fff;
+    }
+    body.mobile-nav-active .hamburger-menu .bar:nth-child(2) {
+        opacity: 0;
+    }
+    body.mobile-nav-active .hamburger-menu .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+        background-color: #fff;
+    }
+    
+    /* Main Content Adjustments */
     .page-container {
         flex-direction: column;
         margin: 0;
@@ -1278,77 +1466,46 @@ a {
         gap: 0;
     }
 
-    .sidebar {
-        position: static;
+    .main-content {
         width: 100%;
+        padding: 20px;
         border-radius: 0;
-        top: 0;
-        border-right: none;
-        border-bottom: 1px solid #444;
-    }
-
-    .sidebar-content {
-        border-radius: 0;
-        background: none;
-        backdrop-filter: none;
+        margin-top: 0;
+        background-color: transparent; /* Let particles show through */
     }
     
-    .main-content {
-        border-radius: 0;
-        padding: 1.5rem;
+    article {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+    }
+    
+    .main-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .section-title {
+        font-size: 1.4rem;
     }
 
-    /* Mobile Navigation */
-    .main-header {
-        padding: 0 1.5rem;
+    /* Adjust specific page elements for mobile */
+    .tabs-container {
+        justify-content: center;
+    }
+    .tab {
+        padding: 10px 15px;
+        font-size: 0.9rem;
     }
 
-    .nav-toggle {
-        display: block; /* Show hamburger */
+    .prof-categories {
+        grid-template-columns: 1fr;
     }
 
-    .nav-links {
-        position: absolute;
-        top: 60px; /* Position below header */
-        left: 0;
-        width: 100%;
-        background: #1c1c1c;
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem 0;
-        margin: 0;
-        transform: translateY(-150%);
-        transition: transform 0.3s ease-in-out;
-        border-bottom: 1px solid #333;
+    /* Responsive Timeline Design - Hide desktop, show mobile */
+    .desktop-timeline {
+        display: none;
     }
-
-    .nav-links-visible {
-        transform: translateY(0);
-    }
-
-    .main-nav ul li,
-    .nav-links li {
-        width: 100%;
-        text-align: center;
-    }
-
-    .main-nav a {
-        padding: 1rem 0;
-        font-size: 1.2rem;
+    .mobile-experience {
         display: block;
-        width: 100%;
-    }
-
-    .main-nav a.active::after {
-        display: none; /* Don't need the underline on mobile nav */
-    }
-
-    .nav-links a:hover {
-        background: #252525;
-    }
-
-    /* Adjust main content padding to account for header */
-    .main-content {
-        margin-top: 0;
     }
 }
